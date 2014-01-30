@@ -1,0 +1,39 @@
+{
+  "name": "grunt-mocha-casperjs",
+  "description": "Grunt wrapper for mocha-casperjs task.",
+  "keywords": [
+    "casper",
+    "chai",
+    "casperjs",
+    "mocha"
+  ],
+  "version": "0.0.1",
+  "author": "Brendan Billingsley <billinb@nsidc.org>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/billingb/grunt-mocha-casperjs.git"
+  },
+  "bugs": {
+    "url": "http://github.com/billingb/grunt-mocha-casperjs/issues"
+  },
+  "directories": {
+    "lib": "./lib"
+  },
+  "main": "Gruntfile.js",
+  "scripts": {
+    "test": "grunt"
+  },
+  "engines": {
+    "node": ">= 0.10.0"
+  },
+  "dependencies": {
+    "mocha-casperjs": "~0.3.3"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.0"
+  },
+  "peerDependencies": {
+    "grunt": "~0.4.0"
+  }
+}

@@ -19,13 +19,15 @@ module.exports = function(grunt) {
     var options        = this.options({
         reporter: 'spec'
       }),
+      filepaths = [],
+      options = grunt.util._.defaults(this.options()),
       args           = [],
       binPath        = '.bin/mocha-casperjs' + (process.platform === 'win32' ? '.cmd' : ''),
       mochaCasperjsPath = path.join(__dirname, '..', '/node_modules/', binPath),
-      done           = this.async(),
       errors         = 0,
       results        = '',
       output         = options.output || false;
+
 
     // disable color if color not passed
     if (grunt.option('color') === false) {
@@ -63,7 +65,19 @@ module.exports = function(grunt) {
       });
     });
 
-    util.async.forEachSeries(urls, function(f, next) {
+    this.files.forEach(function(file) {
+      file.src.filter(function(filepath) {
+        if (!grunt.file.exists(filepath)) {
+          grunt.log.warn('Source file "' + filepath + '" not found.');
+          return false;
+        } else {
+          filepaths.push(filepath);
+          return true;
+        }
+      });
+    });
+
+    util.async.forEachSeries(filepaths, function(f, next) {
       var mochaCasperjsProc = grunt.util.spawn({
         cmd: mochaCasperjsPath,
         args: _.flatten([f].concat(args))

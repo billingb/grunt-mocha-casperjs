@@ -26,7 +26,8 @@ module.exports = function(grunt) {
       mochaCasperjsPath = path.join(__dirname, '..', '/node_modules/', binPath),
       errors         = 0,
       results        = '',
-      output         = options.output || false;
+      output         = options.output || false,
+      done           = this.async();
 
 
     // disable color if color not passed
